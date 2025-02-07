@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.unir.buscador.model.Book;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/books")
@@ -27,6 +28,12 @@ public class BookController {
     @PostMapping
     public Book createBook(@RequestBody Book book) {
         return bookService.saveBook(book);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Book> updateBookPartial(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
+        Book updatedBook = bookService.updateBookPartial(id, updates);
+        return ResponseEntity.ok(updatedBook);
     }
 
     @DeleteMapping("/{id}")
