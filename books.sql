@@ -35,15 +35,16 @@ CREATE TABLE `books` (
   `publication_date` date DEFAULT NULL,
   `rating` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `visible` bit(1) NOT NULL
+  `stock` int(11) DEFAULT NULL,
+  `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `books`
 --
 
-INSERT INTO `books` (`id`, `author`, `category`, `isbn`, `publication_date`, `rating`, `title`, `visible`) VALUES
-(1, 'Antoine de Saint-Exupéry', 'Ficción', '978-3-16-148410-0', '1943-04-06', 5, 'El principito', b'1');
+INSERT INTO `books` (`id`, `author`, `category`, `isbn`, `publication_date`, `rating`, `title`, `visible`, `stock`, `price`) VALUES
+(1, 'Antoine de Saint-Exupéry', 'Ficción', '978-3-16-148410-0', '1943-04-06', 5, 'El principito', b'1', 10, 10.5);
 
 --
 -- Índices para tablas volcadas

@@ -1,0 +1,37 @@
+package com.unir.operador.facade;
+
+import ...
+
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class BooksFacade {
+
+    @Value("http://ms-buscador/books/%s")
+    private String getBookUrl;
+
+    private final RestTemplate restTemplate;
+
+    public Book getBook(Strin
+
+    		String url = String.format(getBookU
+               log.info("Obten
+
+    	}catch(
+
+    HttpClientErrorException e)
+    {
+
+        return null;
+    }catch(
+    HttpServerErrorException e)
+    {
+        log.error("Server Error al obtener el libro con id: {}", id);
+        return null;
+    }catch(
+    Exception e)
+    {
+        log.error("Error al obtener el libro con id: {}", id);
+        return null;
+    }
+}}

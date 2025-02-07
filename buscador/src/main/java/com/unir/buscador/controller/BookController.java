@@ -15,14 +15,19 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/search")
+    @GetMapping
     public List<Book> searchBooks(@RequestParam(required = false) String title,
-                                  @RequestParam(required = false) String author,
-                                  @RequestParam(required = false) String category,
-                                  @RequestParam(required = false) String isbn,
-                                  @RequestParam(required = false) Integer rating,
-                                  @RequestParam(required = false) Boolean visible) {
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String isbn,
+            @RequestParam(required = false) Integer rating,
+            @RequestParam(required = false) Boolean visible) {
         return bookService.searchBooks(title, author, category, isbn, rating, visible);
+    }
+
+    @GetMapping("/{id}")
+    public Book getBook(@PathVariable Long id) {
+        return bookService.getBook(id);
     }
 
     @PostMapping

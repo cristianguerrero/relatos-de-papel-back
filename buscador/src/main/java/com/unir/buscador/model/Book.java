@@ -22,6 +22,8 @@ public class Book {
     private String isbn;
     private int rating; // 1-5
     private boolean visible;
+    private int stock;
+    private float price;
 
     // Getters y Setters
 }

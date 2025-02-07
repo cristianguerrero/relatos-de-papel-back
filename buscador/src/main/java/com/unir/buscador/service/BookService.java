@@ -18,9 +18,26 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> searchBooks(String title, String author, String category, String isbn, Integer rating, Boolean visible) {
+    public List<Book> searchBooks(String title, String author, String category, String isbn, Integer rating,
+            Boolean visible) {
         // Implementación de búsqueda combinada
-        return bookRepository.findAll(); // Debes implementar la lógica combinada
+        return bookRepository.findAll().stream()
+                .filter(book -> (title == null || book.getTitle().contains(title)) &&
+                        (author == null || book.getAuthor().contains(author)) &&
+                        (category == null || book.getCategory().contains(category)) &&
+                        (isbn == null || book.getIsbn().contains(isbn)) &&
+                        (rating == null || book.getRating() == rating) &&
+                        (visible == null || book.isVisible() == visible))
+                .toList();
+    }
+
+    public Book getBook(Long id) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        if (!optionalBook.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found");
+        }
+
+        return optionalBook.get();
     }
 
     public Book saveBook(Book book) {
