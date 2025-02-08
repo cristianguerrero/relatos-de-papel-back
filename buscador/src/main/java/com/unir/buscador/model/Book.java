@@ -17,7 +17,7 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private LocalDate publicationDate;
+    private String publicationDate;
     private String category;
     private String isbn;
     private int rating; // 1-5
