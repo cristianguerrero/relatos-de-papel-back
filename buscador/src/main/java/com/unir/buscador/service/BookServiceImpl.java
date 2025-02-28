@@ -3,15 +3,14 @@ package com.unir.buscador.service;
 import com.unir.buscador.repository.BookRepository;
 import com.unir.buscador.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -68,7 +67,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook(Long id) {
+    public Map<String, String> deleteBook(Long id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        Map<String, String> response = new HashMap<>();
+        System.out.println(bookOptional);
+
+        if (!bookOptional.isPresent()) {
+            response.put("message", "Libro no encontrado");
+            return response;
+        }
         bookRepository.deleteById(id);
+
+        response.put("message", "Se eliminó correctamente");
+        return response;
     }
 }

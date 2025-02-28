@@ -10,5 +10,5 @@ public interface BookService {
     Book getBook(Long id);
     Book saveBook(Book book);
     Book updateBookPartial(Long id, Map<String, Object> updates);
-    void deleteBook(Long id);
+    Map<String, String> deleteBook(Long id);
 }
